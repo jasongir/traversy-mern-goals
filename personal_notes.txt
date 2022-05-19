@@ -1,0 +1,6 @@
+commands:
+npm init
+npm i express dotenv mongoose colors
+npm i -D nodemon
+
+set scripts in package.json
