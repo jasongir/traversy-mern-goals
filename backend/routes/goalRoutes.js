@@ -7,12 +7,16 @@ const {
 	setGoal,
 } = require("../controllers/goalController");
 
-router.get("/", getGoals);
+router.route("/").get(getGoals).post(setGoal);
 
-router.post("/", setGoal);
+router.route("/:id").put(updateGoal).delete(deleteGoal);
 
-router.put("/:id", updateGoal);
+// router.get("/", getGoals);
 
-router.delete("/:id", deleteGoal);
+// router.post("/", setGoal);
+
+// router.put("/:id", updateGoal);
+
+// router.delete("/:id", deleteGoal);
 
 module.exports = router;
