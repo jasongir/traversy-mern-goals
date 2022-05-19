@@ -9,3 +9,8 @@ add to git
 also async handler:
 
 npm i express-async-handler
+
+For encrypting passwords
+
+npm i bcryptjs
+npm i jsonwebtoken
