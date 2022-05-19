@@ -4,3 +4,4 @@ npm i express dotenv mongoose colors
 npm i -D nodemon
 
 set scripts in package.json
+add to git
