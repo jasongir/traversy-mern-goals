@@ -19,13 +19,12 @@ function Dashboard() {
 		if (isError) {
 			console.log(message);
 		}
-
 		if (!user) {
 			navigate("/login");
 		}
 
 		dispatch(getGoals());
-		return () => dispatch(reset());
+		// return () => dispatch(reset());
 	}, [user, navigate, isError, message, dispatch]);
 
 	if (isLoading) return <Spinner />;
