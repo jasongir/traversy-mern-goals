@@ -14,3 +14,48 @@ For encrypting passwords
 
 npm i bcryptjs
 npm i jsonwebtoken
+
+the store:
+create store in its own file
+- this store includes other reducers
+access the store in index.js
+
+create a reducer:
+have an initialState, which will be mutated later
+
+pass this into createSlice, with a name, initialState, reducers, and extrareducers
+- reducers are synchronous functions that change current application state
+- extraReducers: where we pass in asynchronous thunks
+
+first we create a thunk by "createAsyncThunk"ing
+- give it a type prefix, then a payload creator
+- in createAsyncThunk, we pass an async function
+   - traversy puts separate axios.get/post logic for login/logout/register in separate file
+      - these are really just async functions awaited for by wrapper in createAsyncThunk
+- createAsyncThunk also gets passed a thunkAPI object
+   - we can reject with a value using the thunkAPI
+
+ex: 
+const getData = createAsyncThunk(
+   "data/get", 
+   async (newData, thunkAPI) => {
+      do something, and then return data or reject with value
+   })
+
+
+remember that our slice has an extraReducers, which is a function passed a builder
+- when we dispatch our asyncThunks, we respond to what 
+  they have done with builder.addCase
+- addCase responds to each async thunk's different states (pending, fulfilled, rejected)
+remember, payload creator is in pending, fulfilled, or rejected states
+   - also pass a function with (state, action) into addCase
+- inside of this function, we finally change state
+
+
+asyncthunks simply try to commit some action
+- possibly failing or taking a long time
+   - we can commit some action (loading = true) if in a pending state
+- but ultimately they may return some value in action.payload or return something after rejection
+
+These cases are where our true state changes occur
+
